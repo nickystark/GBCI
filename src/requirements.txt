@@ -18,3 +18,4 @@ tqdm>=4.50.0
 
 # (Optional) Jupyter Notebook support
 jupyterlab>=3.0.0
+jupyter-client<8,>=5.3.4
