@@ -39,6 +39,9 @@ cd notebooks/ jupyter notebook
 - [Segmentation-Guided Diffusion Models](https://www.notion.so/Anatomically-Controllable-Medical-Image-Generation-with-Segmentation-Guided-Diffusion-Models-2067d0e6cb8980fdafc6f454642ae25b?pvs=21)
 - [Generalizable Tumor Synthesis](https://www.notion.so/Towards-Generalizable-Tumor-Synthesis-2067d0e6cb8980cfa090dad1e627e177?pvs=21)
 
+##Dataset
+VinDr-Mammo: A large-scale benchmark dataset for computer-aided detection and diagnosis in full-field digital mammography
+
 ## Contributing
 - Submit **issues and pull requests** for improvements.
 - Follow the **branching strategy** for stable development.
