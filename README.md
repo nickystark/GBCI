@@ -21,3 +21,24 @@ For advanced implementation:
 - **Multimodal Generation:** Producing coherent mammogram-biopsy image pairs.
 
 ## Repository Structure
+📂 generative-cancer-imaging ├── notebooks/           # Jupyter/Colab notebooks ├── src/                 # Model implementation ├── data/                # Dataset processing scripts (not raw data) ├── docs/                # Project documentation ├── requirements.txt     # Dependencies ├── README.md            # Project overview └── LICENSE              # License information
+
+## Getting Started
+1. Clone the repository:
+git clone https://github.com/nickystark/GBCI.git cd GBCI
+2. Install dependencies:
+pip install -r requirements.txt
+3. Open the notebooks:
+cd notebooks/ jupyter notebook
+4. Follow project development using [GitHub Projects](https://github.com/nickystark/GBCI.git/projects).
+
+## References & Resources
+- **ISPAMM Lab Code Repository**: [GitHub](https://github.com/orgs/ispamm/repositories)
+- **Medical Generative Models Research**:
+- [High-Resolution Image Synthesis](https://www.notion.so/High-Resolution-Image-Synthesis-with-Latent-Diffusion-Models-568cdba7f3c2415a989673ceef9ca20f?pvs=21)
+- [Segmentation-Guided Diffusion Models](https://www.notion.so/Anatomically-Controllable-Medical-Image-Generation-with-Segmentation-Guided-Diffusion-Models-2067d0e6cb8980fdafc6f454642ae25b?pvs=21)
+- [Generalizable Tumor Synthesis](https://www.notion.so/Towards-Generalizable-Tumor-Synthesis-2067d0e6cb8980cfa090dad1e627e177?pvs=21)
+
+## Contributing
+- Submit **issues and pull requests** for improvements.
+- Follow the **branching strategy** for stable development.
