@@ -30,12 +30,30 @@ class LatentDiffusionModel(nn.Module):
             nn.Sigmoid()
         )
     
-    def forward(self, x):
-        # Encode image to latent space
+        self.denoiser = nn.Sequential(
+                nn.Linear(config.latent_dim, config.latent_dim),
+                nn.ReLU(),
+                nn.Linear(config.latent_dim, config.latent_dim)
+            )
+            # Buffer dei betas per la diffusione
+        self.register_buffer('betas', torch.linspace(1e-4, 0.02, 1000))  # esempio
+
+        
+    def q_sample(self, latent, t, noise):
+        beta_t = self.betas[t].view(-1, 1)
+        return torch.sqrt(1 - beta_t) * latent + torch.sqrt(beta_t) * noise
+
+    def forward(self, x, t=None):
         latent = self.encoder(x)
-        # Decode latent space back to image
-        recon = self.decoder(latent)
-        return recon, latent
+        if t is not None:
+            noise = torch.randn_like(latent)
+            noisy_latent = self.q_sample(latent, t, noise)
+            pred_noise = self.denoiser(noisy_latent)
+            return pred_noise, noise
+        else:
+            recon = self.decoder(latent)
+            return recon, latent
+            
 
 if __name__ == "__main__":
     # Simple test: create a model and see the output shapes
