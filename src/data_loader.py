@@ -39,6 +39,16 @@ class MammogramDataset(Dataset):
             else:
                 mask = Image.new("L", image.size)  # maschera vuota
 
+        # Applica le trasformazioni
+        if self.transform:
+            image = self.transform(image)
+            if mask is not None:
+                mask = self.transform(mask)
+
+        # Crea l'immagine mascherata (masked image = image * mask)
+        if mask is not None:
+            masked_image = image * (mask > 0.5).float()
+
         # Prepara attributi anatomici (esempio: densità, vista)
         attributes = torch.tensor([])
         if self.use_metadata:
@@ -53,16 +63,11 @@ class MammogramDataset(Dataset):
             # Puoi aggiungere altri attributi qui (es. tipo lesione)
             attributes = torch.cat([density, view])
 
-        # Applica le trasformazioni
-        if self.transform:
-            image = self.transform(image)
-            if mask is not None:
-                mask = self.transform(mask)
-
         # Restituisci immagine, maschera e attributi
         return {
             "image": image,
             "mask": mask if mask is not None else torch.zeros_like(image),
+            "masked_image": masked_image if mask is not None else torch.zeros_like(image),  # immagine mascherata per il condizionamento
             "attributes": attributes
         }
 
